@@ -1,0 +1,9 @@
+server:
+  port: 8302
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.191.101:3306/clouddemo
+    username: root
+    password: 123456

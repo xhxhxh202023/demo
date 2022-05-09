@@ -2,8 +2,17 @@ server:
   port: 8302
 
 spring:
+  application:
+    name: bookservice
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.191.101:3306/clouddemo
     username: root
     password: 123456
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://127.0.0.1:8888/eureka

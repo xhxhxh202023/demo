@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Description: com.xh.service.client
  * @Version: 1.0
  */
-@FeignClient("userservice") //声明为userservice服务的http请求客户端
+//@FeignClient(value = "userservice") //声明为userservice服务的http请求客户端
+@FeignClient(value = "userservice", fallback = UserClientImpl.class) //补救措施
 public interface UserClient {
     //resttemplate 请求
     //restTemplate.getForObject("http://userservice/user/" + uid, User.class);

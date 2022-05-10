@@ -1,4 +1,4 @@
-package com.xh.mapper;
+package com.xh.entity.mapper;
 
 import com.xh.entity.Borrow;
 import org.apache.ibatis.annotations.Mapper;

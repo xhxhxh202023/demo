@@ -4,13 +4,12 @@ import com.xh.entity.Book;
 import com.xh.entity.Borrow;
 import com.xh.entity.BorrowDetail;
 import com.xh.entity.User;
-import com.xh.mapper.BorrowMapper;
+import com.xh.entity.mapper.BorrowMapper;
+import com.xh.service.client.BookClient;
+import com.xh.service.client.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.Resource;
-import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,18 +24,27 @@ public class BorrowServiceImpl implements BorrowService {
     @Autowired
     BorrowMapper mapper;
 
-    @Resource
-    RestTemplate restTemplate;
+//    @Resource
+//    RestTemplate restTemplate;
+
+    @Autowired
+    UserClient userClient;
+    @Autowired
+    BookClient bookClient;
 
     @Override
     public BorrowDetail getBorrowDetailByUid(int uid) {
         List<Borrow> borrowList = mapper.getBorrowByUserId(uid);
 
         //  eureka注册后 直接写服务名称即可
-        User user = restTemplate.getForObject("http://userservice/user/" + uid, User.class);
+//        User user = restTemplate.getForObject("http://userservice/user/" + uid, User.class);
+        //openfeign
+        User user = userClient.getUserById(uid);
         List<Book> books = borrowList
                 .stream()
-                .map(b -> restTemplate.getForObject("http://bookservice:8302/book/" + b.getBid(), Book.class))
+//                .map(b -> restTemplate.getForObject("http://bookservice:8302/book/" + b.getBid(), Book.class))
+                //openfeign
+                .map(b -> bookClient.getBookById(b.getBid()))
                 .collect(Collectors.toList());
         return new BorrowDetail(user, books);
     }

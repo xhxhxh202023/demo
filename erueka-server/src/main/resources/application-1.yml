@@ -1,0 +1,16 @@
+server:
+  port: 8801
+# eureka 集群
+eureka:
+  instance:
+    hostname: eureka1
+
+  client:
+    fetch-registry: false
+    # 作为服务端 不需要获取服务器
+    service-url:
+      defaultZone:  http://eureka2:8802/eureka
+      #eureka 服务端指向洽谈服务端
+spring:
+  application:
+    name: eureka1

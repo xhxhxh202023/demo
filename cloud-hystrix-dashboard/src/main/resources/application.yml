@@ -1,0 +1,6 @@
+server:
+  port: 8900
+hystrix:
+  dashboard:
+    #加入白名单
+    proxy-stream-allow-list: "localhost"

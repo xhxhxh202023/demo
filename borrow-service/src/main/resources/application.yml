@@ -19,3 +19,9 @@ eureka:
 feign:
   circuitbreaker:
     enabled: true #支持熔断
+#actuator 暴露
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

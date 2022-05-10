@@ -16,3 +16,12 @@ eureka:
 #      defaultZone:  http://127.0.0.1:8888/eureka
       # 注册到两个eurekaserver中
       defaultZone:  http://eureka1:8801/eureka,  http://eureka2:8802/eureka
+feign:
+  circuitbreaker:
+    enabled: true #支持熔断
+#actuator 暴露
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

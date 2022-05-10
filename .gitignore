@@ -1,2 +1,6 @@
 /.mvn/
 /target/
+/borrow-service/target/
+/book-service/target/
+/user-service/target/
+/erueka-server/target/

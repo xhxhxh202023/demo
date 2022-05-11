@@ -5,3 +5,5 @@
 /user-service/target/
 /erueka-server/target/
 /borrow-service/target/
+/config-service/target/
+/*/target/

@@ -1,0 +1,32 @@
+server:
+  port: 8500
+
+spring:
+  application:
+    name: gatewayservice
+  cloud:
+    gateway:
+      #配置路由
+      routes:
+        - id: borrow-service  #路由名称
+          uri:  lb://borrowservice  #路由地址 lb 负载均衡
+          predicates: #路由规则
+            - Path=/borrow/*  #访问该路径 全部路由到上面路由地址
+
+        - id: user-service
+          uri: lb://userservice
+          predicates:
+            - Path=/user/*
+
+        - id: book-service
+          uri: lb://bookservice
+          predicates:
+            - Path=/book/*
+#          filters:  #路由过滤器
+#            -AddRequestHeader=X-Request-red, blue
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://eureka1:8801/eureka, http://eureka2:8802/eureka
+
